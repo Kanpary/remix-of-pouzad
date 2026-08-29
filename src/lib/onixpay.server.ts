@@ -133,8 +133,8 @@ export async function createPixPayment(input: {
 
 /** Consulta o status de uma transação (depósito ou saque). */
 export async function getTransactionStatus(input: {
-  transactionId?: string;
-  referenceCode?: string;
+  transactionId?: string | undefined;
+  referenceCode?: string | undefined;
   apiBaseUrl?: string | null;
 }): Promise<OnixTransactionStatus> {
   const { clientId, clientSecret } = credentials();

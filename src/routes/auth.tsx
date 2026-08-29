@@ -14,10 +14,11 @@ import { isValidCPF, onlyDigits } from "@/lib/money";
 type Mode = "login" | "register";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    mode: search["mode"] === "register" ? ("register" as const) : ("login" as const),
-    ref: typeof search["ref"] === "string" ? (search["ref"] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { mode: "login" | "register"; ref?: string } => {
+    const mode = search["mode"] === "register" ? ("register" as const) : ("login" as const);
+    const ref = typeof search["ref"] === "string" ? search["ref"] : null;
+    return ref ? { mode, ref } : { mode };
+  },
   head: () => ({
     meta: [
       { title: "Entrar ou criar conta | Panda Pay" },
