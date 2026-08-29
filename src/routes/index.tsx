@@ -78,7 +78,7 @@ function Landing() {
             <p className="mt-4 max-w-lg text-base text-muted-foreground md:text-lg">{subtitle}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="shadow-[var(--shadow-glow)]">
-                <Link to={user ? "/jogar" : "/auth"} search={user ? undefined : { mode: "register" }}>
+                <Link to={user ? "/jogar" : "/auth"} search={user ? {} : { mode: "register" }}>
                   {user ? "Jogar agora" : "Começar agora"}
                 </Link>
               </Button>

@@ -163,7 +163,7 @@ function DashboardPage() {
             <ListCard
               empty="Nenhuma movimentação ainda."
               rows={(overview.data?.transactions ?? []).map((tx) => ({
-                id: tx.id,
+                id: String(tx.id),
                 title: tx.description ?? tx.type,
                 subtitle: new Date(tx.created_at).toLocaleString("pt-BR"),
                 value: formatBRL(Number(tx.amount)),
@@ -176,7 +176,7 @@ function DashboardPage() {
             <ListCard
               empty="Você ainda não jogou nenhuma partida."
               rows={(overview.data?.sessions ?? []).map((session) => ({
-                id: session.id,
+                id: String(session.id),
                 title: `Aposta ${formatBRL(Number(session.bet_amount))} · ${session.coins_collected ?? 0} moedas`,
                 subtitle: `${session.status} · ${new Date(session.created_at).toLocaleString("pt-BR")}`,
                 value: formatBRL(Number(session.payout_amount ?? 0)),
@@ -189,7 +189,7 @@ function DashboardPage() {
             <ListCard
               empty="Nenhuma comissão recebida ainda."
               rows={(overview.data?.commissions ?? []).map((commission) => ({
-                id: commission.id,
+                id: String(commission.id),
                 title: `Comissão (${commission.source_type})`,
                 subtitle: new Date(commission.created_at).toLocaleString("pt-BR"),
                 value: formatBRL(Number(commission.amount)),
